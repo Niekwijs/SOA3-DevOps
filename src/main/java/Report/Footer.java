@@ -10,4 +10,11 @@ public class Footer {
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "address='" + address + '\'' +
+                ", companyName='" + companyName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' ;
+    }
 }

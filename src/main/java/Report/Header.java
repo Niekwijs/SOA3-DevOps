@@ -14,4 +14,12 @@ public class Header {
         this.version = version;
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "companyName='" + companyName + '\'' +
+                ", sprintName='" + sprintName + '\'' +
+                ", version=" + version +
+                ", date=" + date ;
+    }
 }
