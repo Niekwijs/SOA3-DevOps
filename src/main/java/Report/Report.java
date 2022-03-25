@@ -9,4 +9,13 @@ public class Report {
     public Footer footer;
     public IExportBehavior exportBehavior;
 
+    @Override
+    public String toString() {
+        return "Report{" +
+                "header=" + header +
+                ", contents=" + contents +
+                ", footer=" + footer +
+                ", exportBehavior=" + exportBehavior +
+                '}';
+    }
 }
