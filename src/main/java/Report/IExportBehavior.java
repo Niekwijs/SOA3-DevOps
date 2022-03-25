@@ -1,5 +1,5 @@
 package Report;
 
 public interface IExportBehavior {
-    public void export();
+    public void export(Report report);
 }

@@ -1,14 +1,8 @@
 package Report;
 
 public class ExportPNG implements IExportBehavior{
-    public Report report;
-
-    public ExportPNG(Report report) {
-        this.report = report;
-    }
-
     @Override
-    public void export() {
+    public void export(Report report) {
         System.out.println("PNG");
         System.out.println("-----------------------------");
         System.out.println(report.header.toString());

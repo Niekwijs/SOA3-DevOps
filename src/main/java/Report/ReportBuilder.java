@@ -21,9 +21,13 @@ public class ReportBuilder {
     }
     public void setExportType(ExportType exportType){
         if(exportType == ExportType.PDF){
-            this.report.exportBehavior = new ExportPDF(this.report);
+            this.report.exportBehavior = new ExportPDF();
         }else{
-            this.report.exportBehavior = new ExportPNG(this.report);
+            this.report.exportBehavior = new ExportPNG();
         }
+    }
+
+    public void getReport() {
+        report.exportBehavior.export(this.report);
     }
 }
