@@ -1,5 +1,6 @@
 package Backlog;
 
+import Account.Account;
 import exceptions.ChangeBacklogStateException;
 
 public class ReadyForTestingState implements IBacklogItemState {
@@ -24,7 +25,7 @@ public class ReadyForTestingState implements IBacklogItemState {
     }
 
     @Override
-    public void changeToReadyForTestingState() throws ChangeBacklogStateException {
+    public void changeToReadyForTestingState(Account account) throws ChangeBacklogStateException {
         throw new ChangeBacklogStateException("Can't change from ReadyForTesting to ReadyForTesting!");
 
     }

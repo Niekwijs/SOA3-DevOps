@@ -1,5 +1,6 @@
 package Backlog;
 
+import Account.Account;
 import exceptions.ChangeBacklogStateException;
 
 public class TestedState implements IBacklogItemState {
@@ -21,8 +22,11 @@ public class TestedState implements IBacklogItemState {
     }
 
     @Override
-    public void changeToReadyForTestingState() {
+    public void changeToReadyForTestingState(Account account) throws ChangeBacklogStateException {
         //TODO: F13 Als tester wil ik een notificatie krijgen als een backlog item in de fase Ready for testing komt zodat ik weet wanneer ik moet gaan testen
+        if(!account.getClass().getSimpleName().equals("LeadDeveloper")) {
+            throw new ChangeBacklogStateException("Only a lead developer can change from Tested to Ready for Testing");
+        }
         this._backlogItem.setState(new ReadyForTestingState(this._backlogItem));
     }
 
