@@ -44,7 +44,6 @@ public class TestedState implements IBacklogItemState {
         {
             throw new ChangeBacklogStateException("Can't change from Tested to Done bewcause activities are not done!");
         }
-        //TODO: F9 Als gebruiker wil ik een backlog item pas de status 'Done' kunnen geven als alle taken zijn afgerond zodat deze taken niet over het hoofd worden gezien
 
     }
 }
