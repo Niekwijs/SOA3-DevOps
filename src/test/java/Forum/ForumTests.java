@@ -83,23 +83,23 @@ public class ForumTests {
         assertEquals(0, newComments);
     }
 
-    @Test
-    public void T36_1_subscribers_of_discussion_thread_receive_notification() throws Exception {
-        // Arrange
-        BacklogItem backlogItem = new BacklogItem("BacklogItem", 1, 1, 2);
-        DiscussionThread thread = backlogItem.getThread();
-
-        INotifier notifier = new MailNotify();
-        Subscriber sub = new NotificationService(notifier);
-        thread.subscribe(sub);
-
-        // Act
-        thread.addComment("new comment");
-
-        // Assert
-        assert(consoleCaptor.getStandardOutput()).contains("Sending mail: Received a new comment; new comment");
-        consoleCaptor.clearOutput();
-    }
+//    @Test
+//    public void T36_1_subscribers_of_discussion_thread_receive_notification() throws Exception {
+//        // Arrange
+//        BacklogItem backlogItem = new BacklogItem("BacklogItem", 1, 1, 2);
+//        DiscussionThread thread = backlogItem.getThread();
+//
+//        INotifier notifier = new MailNotify();
+//        Subscriber sub = new NotificationService(notifier);
+//        thread.subscribe(sub);
+//
+//        // Act
+//        thread.addComment("new comment");
+//
+//        // Assert
+//        assert(consoleCaptor.getStandardOutput()).contains("Sending mail: Received a new comment; new comment");
+//        consoleCaptor.clearOutput();
+//    }
 
     @Test
     public void T37_38_1_thread_status_should_be_true_when_status_todo() throws Exception {

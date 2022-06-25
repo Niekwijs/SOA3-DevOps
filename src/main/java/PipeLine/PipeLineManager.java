@@ -2,7 +2,6 @@ package PipeLine;
 
 import Notification.Publisher;
 import Notification.Subscriber;
-import com.google.gson.Gson;
 
 import java.nio.channels.Pipe;
 import java.util.ArrayList;

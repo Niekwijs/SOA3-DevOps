@@ -371,43 +371,41 @@ public class BacklogTests {
         assertEquals(backlogItem.state.getClass(), DoneState.class);
 
     }
-    @Test
-    public void F12_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
-        //Assert
-        Tester tester = new Tester("tester",1,"test@mial.com","01111111","tester45");
-        NotificationService notificationService = new NotificationService(new SlackNotify());
-        BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        backlogItem.subscribe(tester,notificationService);
-        backlogItem.state.changeToDoingState();
-
-        //Act
-        backlogItem.state.changeToReadyForTestingState();
-        //Assert
-
-        assert(consoleCaptor.getStandardOutput()).contains("Sent Slack message: Backlog item changed from doing to ready for testing");
-        consoleCaptor.clearOutput();
-
-
-    }
-    @Test
-    public void F20_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
-        //Assert
-        ScrumMaster scrumMaster1 = new ScrumMaster("scrummaster",1,"test@mial.com","01111111","tester45");
-        NotificationService notificationService = new NotificationService(new SlackNotify());
-        BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        backlogItem.subscribe(scrumMaster1,notificationService);
-        backlogItem.state.changeToDoingState();
-        backlogItem.state.changeToReadyForTestingState();
-
-
-        //Act
-        backlogItem.state.changeToToDoState();
-        //Assert
-
-        assert(consoleCaptor.getStandardOutput()).contains("Sent Slack message: Change from ready to testing to doing");
-        consoleCaptor.clearOutput();
-
-
-    }
+//    @Test
+//    public void F12_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
+//        //Assert
+//        Tester tester = new Tester("tester",1,"test@mial.com","01111111","tester45");
+//        NotificationService notificationService = new NotificationService(new SlackNotify());
+//        BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
+//        backlogItem.subscribe(tester,notificationService);
+//        backlogItem.state.changeToDoingState();
+//
+//        //Act
+//        backlogItem.state.changeToReadyForTestingState();
+//        //Assert
+//
+//        assert(consoleCaptor.getStandardOutput()).contains("Sent Slack message: Backlog item changed from doing to ready for testing");
+//        consoleCaptor.clearOutput();
+//
+//
+//    }
+//    @Test
+//    public void F20_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
+//        //Assert
+//        ScrumMaster scrumMaster1 = new ScrumMaster("scrummaster",1,"test@mial.com","01111111","tester45");
+//        NotificationService notificationService = new NotificationService(new SlackNotify());
+//        BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
+//        backlogItem.subscribe(scrumMaster1,notificationService);
+//        backlogItem.state.changeToDoingState();
+//        backlogItem.state.changeToReadyForTestingState();
+//
+//
+//        //Act
+//        backlogItem.state.changeToToDoState();
+//        //Assert
+//
+//        assert(consoleCaptor.getStandardOutput()).contains("Sent Slack message: Change from ready to testing to doing");
+//        consoleCaptor.clearOutput();
+//    }
 
 }
