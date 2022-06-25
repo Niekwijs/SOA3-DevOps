@@ -6,7 +6,8 @@ import Backlog.BacklogItem;
 import Notification.Subscriber;
 import PipeLine.PipeLine;
 import PipeLine.PipeLineManager;
-import Project.Project;
+import Project.IProject;
+import Project.ScrumProject;
 import Report.Report;
 import Sprint.States.ISprintState;
 import Sprint.States.InitialState;
@@ -25,7 +26,7 @@ public class Sprint {
     public Account productOwner;
     public List<Account> developers;
     public List<Account> testers;
-    public Project project;
+    public IProject project;
     public Date startTime;
     public Date endTime;
     public PipeLineManager pipeLineManager;
@@ -34,7 +35,7 @@ public class Sprint {
 
     public Map<Account, Subscriber> subscribers = new HashMap<Account, Subscriber>();
 
-    public Sprint(SprintType type, String name, Backlog backlog, Account scrumMaster, Account productOwner, List<Account> developers, List<Account> testers, Project project, Date startTime, Date endTime){
+    public Sprint(SprintType type, String name, Backlog backlog, Account scrumMaster, Account productOwner, List<Account> developers, List<Account> testers, IProject project, Date startTime, Date endTime){
         this.type = type;
         this.name = name;
         this.backlog = backlog;
@@ -73,7 +74,7 @@ public class Sprint {
         return this.testers;
     }
 
-    public Project getProject() {
+    public IProject getProject() {
         return this.project;
     }
 
@@ -112,6 +113,10 @@ public class Sprint {
     }
 
     public void addReport(Report report) {
+        if(checkInitialState()){
+            System.out.println("Cannot add a report in this stage!");
+            return;
+        }
         this.report = report;
     }
 

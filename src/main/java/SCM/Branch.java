@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Branch {
 
-    private int id;
+    private final int id;
     private String name;
-    private ArrayList<Commit> commits;
+    private final ArrayList<Commit> commits;
 
     public Branch(int id, String name) {
         this.id = id;
@@ -16,10 +16,6 @@ public class Branch {
 
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -37,4 +33,9 @@ public class Branch {
     public void addCommit(Commit commit) {
         this.commits.add(commit);
     }
+
+    public Commit getCommitAtIndex(int index) {
+        return this.commits.get(index);
+    }
+
 }

@@ -7,9 +7,9 @@ import Account.Tester;
 import Account.Developer;
 import Notification.NotificationService;
 import Notification.SlackNotify;
-import Project.Project;
+import Project.IProject;
+import Project.ProjectFactory;
 import Sprint.SprintType;
-import com.beust.ah.A;
 import exceptions.ChangeBacklogStateException;
 import nl.altindag.console.ConsoleCaptor;
 import org.testng.annotations.Test;
@@ -21,6 +21,9 @@ import java.util.Date;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class BacklogTests {
+
+    ProjectFactory projectFactory = new ProjectFactory();
+
     SprintType release = SprintType.Release;
     SprintType review = SprintType.Review;
     Backlog backlog = new Backlog();
@@ -28,7 +31,7 @@ public class BacklogTests {
     Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
     ArrayList<Account> devs = new ArrayList<Account>();
     ArrayList<Account> testers = new ArrayList<Account>();
-    Project project = new Project(backlog, productOwner, "Project 1");
+    IProject project = projectFactory.getProject("scrum", "Project 1");
     Date date = new Date();
     ConsoleCaptor consoleCaptor = new ConsoleCaptor();
 

@@ -11,7 +11,11 @@ public class DiscussionThread implements Publisher {
     public TreeNode treeNode;
     private boolean active;
     private ArrayList<Subscriber> subscribers = new ArrayList<>();
+    private int comments = 0;
 
+    public int getComments() {
+        return comments;
+    }
 
     public DiscussionThread(String name) {
         this.treeNode = new TreeNode(new Comment("New thread: " + name, new Date()));
@@ -19,9 +23,12 @@ public class DiscussionThread implements Publisher {
     }
 
     public void addComment(String comment){
-        TreeNode newComment = new TreeNode(new Comment(comment, new Date()));
-        this.treeNode.addTreeNode(newComment);
-        this.notifySubscribers("Received a new comment; " + comment);
+        if(isActive()){
+            comments++;
+            TreeNode newComment = new TreeNode(new Comment(comment, new Date()));
+            this.treeNode.addTreeNode(newComment);
+            this.notifySubscribers("Received a new comment; " + comment);
+        }
     }
 
     public String getThread(){

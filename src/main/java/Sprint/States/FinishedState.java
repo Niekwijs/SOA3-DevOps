@@ -23,7 +23,7 @@ public class FinishedState implements ISprintState {
 
     @Override
     public void changeToFinishedState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change from finished to finished!");
+        throw new ChangeSprintStateException("Can't change from finished to release finished!");
     }
 
     @Override

@@ -33,4 +33,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 3a5a64559ac57d060b2792a5dc135d8b9145dae4
+
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=Niekwijs_SOA3-DevOps -Dsonar.tests=./src/test/java
+
