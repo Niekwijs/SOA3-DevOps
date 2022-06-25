@@ -1,11 +1,11 @@
-package Sprint.States;
+package sprint.states;
 
-import Sprint.*;
+import sprint.*;
 import exceptions.ChangeSprintStateException;
 
 public class FinishedState implements ISprintState {
 
-    private Sprint sprint;
+    private final Sprint sprint;
 
     public FinishedState(Sprint sprint) {
         this.sprint = sprint;
@@ -28,7 +28,7 @@ public class FinishedState implements ISprintState {
 
     @Override
     public void changeToReleasingState() throws ChangeSprintStateException {
-        if(this.sprint.getType() == SprintType.Release) {
+        if(this.sprint.getType() == SprintType.release) {
             this.sprint.setState(new ReleasingState(this.sprint));
         } else {
             throw new ChangeSprintStateException("Can't release a review sprint");
@@ -37,7 +37,7 @@ public class FinishedState implements ISprintState {
 
     @Override
     public void changeToReleaseCancelledState() throws ChangeSprintStateException {
-        if(this.sprint.getType() == SprintType.Release) {
+        if(this.sprint.getType() == SprintType.release) {
             this.sprint.setState(new ReleaseCancelledState(this.sprint));
             this.sprint.notifySpecificSubscribers("ProductOwner", "The sprint release has been cancelled");
             this.sprint.notifySpecificSubscribers("ScrumMaster", "The sprint release has been cancelled");

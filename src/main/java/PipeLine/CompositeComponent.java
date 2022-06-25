@@ -1,8 +1,8 @@
-package PipeLine;
+package pipeline;
 
 import java.util.ArrayList;
 
-public class CompositeComponent extends  Component{
+public class CompositeComponent extends Component{
 
     private ArrayList<Component> parts;
 

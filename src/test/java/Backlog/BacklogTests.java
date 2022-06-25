@@ -1,15 +1,11 @@
 package Backlog;
 
-import Account.Account;
-import Account.ScrumMaster;
-import Account.ProductOwner;
-import Account.Tester;
-import Account.Developer;
-import Notification.NotificationService;
-import Notification.SlackNotify;
-import Project.IProject;
-import Project.ProjectFactory;
-import Sprint.SprintType;
+import account.*;
+import notification.NotificationService;
+import notification.SlackNotify;
+import project.IProject;
+import project.ProjectFactory;
+import sprint.SprintType;
 import exceptions.ChangeBacklogStateException;
 import nl.altindag.console.ConsoleCaptor;
 import org.testng.annotations.Test;
@@ -28,8 +24,8 @@ public class BacklogTests {
 
     ProjectFactory projectFactory = new ProjectFactory();
 
-    SprintType release = SprintType.Release;
-    SprintType review = SprintType.Review;
+    SprintType release = SprintType.release;
+    SprintType review = SprintType.review;
     Backlog backlog = new Backlog();
     Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
     Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");

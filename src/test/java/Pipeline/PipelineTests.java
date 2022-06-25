@@ -1,6 +1,6 @@
 package Pipeline;
 
-import PipeLine.PipeLine;
+import pipeline.PipeLine;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;

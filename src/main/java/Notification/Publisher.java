@@ -1,4 +1,4 @@
-package Notification;
+package notification;
 
 public interface Publisher {
     void subscribe(Subscriber s);

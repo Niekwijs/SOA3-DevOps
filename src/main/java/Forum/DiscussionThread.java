@@ -1,16 +1,16 @@
-package Forum;
+package forum;
 
-import Notification.Publisher;
-import Notification.Subscriber;
+import notification.Publisher;
+import notification.Subscriber;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 public class DiscussionThread implements Publisher {
 
-    public TreeNode treeNode;
+    private final TreeNode treeNode;
     private boolean active;
-    private ArrayList<Subscriber> subscribers = new ArrayList<>();
+    private final ArrayList<Subscriber> subscribers = new ArrayList<>();
     private int comments = 0;
 
     public int getComments() {

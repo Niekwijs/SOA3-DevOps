@@ -1,17 +1,16 @@
-package Project;
+package project;
 
-import Account.Account;
+import account.Account;
 import Backlog.Backlog;
-import Sprint.Sprint;
+import sprint.Sprint;
 
 import java.util.ArrayList;
 
 public class ScrumProject implements IProject {
 
-    public Backlog projectBacklog;
-    public Account productOwner;
+    private Account productOwner;
     public ArrayList<Sprint> sprints;
-    public String name;
+    private final String name;
 
     public void setProductOwner(Account productOwner) {
         this.productOwner = productOwner;
@@ -20,7 +19,7 @@ public class ScrumProject implements IProject {
     public ScrumProject(String name) {
         this.name = name;
         this.sprints = new ArrayList<>();
-        this.projectBacklog = new Backlog();
+        Backlog projectBacklog = new Backlog();
     }
 
     public Account getProductOwner() {

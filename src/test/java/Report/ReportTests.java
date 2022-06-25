@@ -1,4 +1,4 @@
-package Report;
+package report;
 
 import nl.altindag.console.ConsoleCaptor;
 import org.testng.annotations.Test;

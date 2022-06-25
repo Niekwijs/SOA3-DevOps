@@ -1,12 +1,13 @@
-package Report;
+package report;
 
 import java.util.Date;
 
 public class Header {
-    public String companyName;
-    public String sprintName;
-    public int version;
-    public Date date;
+
+    private final String companyName;
+    private final String sprintName;
+    private final int version;
+    private final Date date;
 
     public Header(String companyName, String sprintName, int version, Date date) {
         this.companyName = companyName;

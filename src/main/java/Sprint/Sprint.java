@@ -1,16 +1,15 @@
-package Sprint;
+package sprint;
 
-import Account.Account;
+import account.Account;
 import Backlog.Backlog;
 import Backlog.BacklogItem;
-import Notification.Subscriber;
-import PipeLine.PipeLine;
-import PipeLine.PipeLineManager;
-import Project.IProject;
-import Project.ScrumProject;
-import Report.Report;
-import Sprint.States.ISprintState;
-import Sprint.States.InitialState;
+import notification.Subscriber;
+import pipeline.PipeLine;
+import pipeline.PipeLineManager;
+import project.IProject;
+import report.Report;
+import sprint.states.ISprintState;
+import sprint.states.InitialState;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -19,21 +18,21 @@ import java.util.Map;
 
 public class Sprint {
 
-    public SprintType type;
-    public String name;
-    public Backlog backlog;
-    public Account scrumMaster;
-    public Account productOwner;
-    public List<Account> developers;
-    public List<Account> testers;
-    public IProject project;
-    public Date startTime;
-    public Date endTime;
-    public PipeLineManager pipeLineManager;
-    public ISprintState state;
-    public Report report;
+    private final SprintType type;
+    private String name;
+    private final Backlog backlog;
+    private final Account scrumMaster;
+    private final Account productOwner;
+    private final List<Account> developers;
+    private final List<Account> testers;
+    private final IProject project;
+    private Date startTime;
+    private Date endTime;
+    private final PipeLineManager pipeLineManager;
+    private ISprintState state;
+    private Report report;
 
-    public Map<Account, Subscriber> subscribers = new HashMap<Account, Subscriber>();
+    private Map<Account, Subscriber> subscribers = new HashMap<Account, Subscriber>();
 
     public Sprint(SprintType type, String name, Backlog backlog, Account scrumMaster, Account productOwner, List<Account> developers, List<Account> testers, IProject project, Date startTime, Date endTime){
         this.type = type;
@@ -103,7 +102,7 @@ public class Sprint {
     }
 
     public void addPipeline(PipeLine pipeLine) {
-        if(this.getType() == SprintType.Release){
+        if(this.getType() == SprintType.release){
             this.pipeLineManager.addNewPipeline(pipeLine);
         }
     }
@@ -164,6 +163,10 @@ public class Sprint {
                 entry.getValue().update(message);
             }
         }
+    }
+
+    public PipeLineManager getPipeLineManager() {
+        return this.pipeLineManager;
     }
 
 }

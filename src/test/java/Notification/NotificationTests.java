@@ -1,4 +1,4 @@
-package Notification;
+package notification;
 
 import org.testng.annotations.Test;
 import java.io.ByteArrayOutputStream;

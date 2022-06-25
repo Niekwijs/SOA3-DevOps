@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 public class Command extends Component{
     private String codeLine;

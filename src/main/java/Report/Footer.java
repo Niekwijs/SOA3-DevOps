@@ -1,9 +1,10 @@
-package Report;
+package report;
 
 public class Footer {
-    public String address;
-    public String companyName;
-    public String phoneNumber;
+
+    private final String address;
+    private final String companyName;
+    private final String phoneNumber;
 
     public Footer(String address, String companyName, String phoneNumber) {
         this.address = address;

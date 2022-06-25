@@ -1,13 +1,13 @@
-package Project;
+package project;
 
-import Account.Account;
+import account.Account;
 import Backlog.Backlog;
 
 public class KanbanProject implements IProject{
 
-    public String name;
-    public Account productOwner;
-    public Backlog projectBacklog;
+    private final String name;
+    private Account productOwner;
+    private final Backlog projectBacklog;
 
     public KanbanProject(String name) {
         this.name = name;

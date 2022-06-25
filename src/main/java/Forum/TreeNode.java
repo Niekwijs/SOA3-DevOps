@@ -1,4 +1,4 @@
-package Forum;
+package forum;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.List;
 
 public class TreeNode {
     private TreeNode parent = null;
-    private List children = null;
+    private List<TreeNode> children = null;
     private Comment comment;
 
     public TreeNode(Comment comment) {
@@ -23,7 +23,6 @@ public class TreeNode {
     }
     private void print(StringBuilder buffer, String prefix, String childrenPrefix){
         buffer.append(prefix);
-        //TODO: add author when account is finished
         buffer.append(comment.getText());
         buffer.append('\n');
         for (Iterator<TreeNode> it = children.iterator(); it.hasNext();){

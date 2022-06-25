@@ -1,11 +1,11 @@
-package Sprint.States;
+package sprint.states;
 
-import Sprint.Sprint;
+import sprint.Sprint;
 import exceptions.ChangeSprintStateException;
 
 public class InProgressState implements ISprintState {
 
-    private Sprint sprint;
+    private final Sprint sprint;
 
     public InProgressState(Sprint sprint) {
         this.sprint = sprint;

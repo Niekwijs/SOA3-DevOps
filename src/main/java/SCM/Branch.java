@@ -1,4 +1,4 @@
-package SCM;
+package scm;
 
 import java.util.ArrayList;
 
