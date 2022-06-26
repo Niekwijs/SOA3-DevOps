@@ -1,11 +1,12 @@
-package Sprint.States;
+package sprint.states;
 
-import Sprint.Sprint;
+import sprint.Sprint;
 import exceptions.ChangeSprintStateException;
 
 public class ReleasingState implements ISprintState {
 
-    private Sprint sprint;
+    private final Sprint sprint;
+    private final String releasingState = "Can't change state while releasing!";
 
     public ReleasingState(Sprint sprint) {
         this.sprint = sprint;
@@ -13,27 +14,27 @@ public class ReleasingState implements ISprintState {
 
     @Override
     public void changeToInitialState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 
     @Override
     public void changeToInProgressState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 
     @Override
     public void changeToFinishedState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 
     @Override
     public void changeToReleasingState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 
     @Override
     public void changeToReleaseCancelledState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 
     @Override
@@ -53,6 +54,6 @@ public class ReleasingState implements ISprintState {
 
     @Override
     public void changeToReviewedState() throws ChangeSprintStateException {
-        throw new ChangeSprintStateException("Can't change state while releasing!");
+        throw new ChangeSprintStateException(releasingState);
     }
 }

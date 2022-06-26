@@ -1,45 +1,20 @@
-package Backlog;
+package backlog;
 
-import Account.Account;
-import Account.ScrumMaster;
-import Account.ProductOwner;
-import Account.Tester;
-import Account.Developer;
-import Account.LeadDeveloper;
-import Notification.NotificationService;
-import Notification.SlackNotify;
-import Project.IProject;
-import Project.ProjectFactory;
-import Sprint.SprintType;
+import account.*;
+import notification.NotificationService;
+import notification.SlackNotify;
 import exceptions.ChangeBacklogStateException;
-import nl.altindag.console.ConsoleCaptor;
-import org.junit.jupiter.api.TestInfo;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class BacklogTests {
-
-    ProjectFactory projectFactory = new ProjectFactory();
-
-    SprintType release = SprintType.Release;
-    SprintType review = SprintType.Review;
-    Backlog backlog = new Backlog();
-    Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
-    Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
-    ArrayList<Account> devs = new ArrayList<Account>();
-    ArrayList<Account> testers = new ArrayList<Account>();
-    IProject project = projectFactory.getProject("scrum", "Project 1");
-    Date date = new Date();
-    ConsoleCaptor consoleCaptor = new ConsoleCaptor();
 
     @Test
     public void T2_1_backlog_item_can_be_created_with_correct_data(){

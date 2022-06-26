@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 public class PipeLine extends CompositeComponent{
 

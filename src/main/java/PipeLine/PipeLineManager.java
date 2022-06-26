@@ -1,7 +1,7 @@
-package PipeLine;
+package pipeline;
 
-import Notification.Publisher;
-import Notification.Subscriber;
+import notification.Publisher;
+import notification.Subscriber;
 import com.google.gson.Gson;
 
 import java.nio.channels.Pipe;

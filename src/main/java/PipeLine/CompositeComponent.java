@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 import java.util.ArrayList;
 

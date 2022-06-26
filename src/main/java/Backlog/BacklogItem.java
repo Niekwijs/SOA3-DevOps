@@ -1,9 +1,9 @@
-package Backlog;
+package backlog;
 
-import Account.Account;
-import Account.Developer;
-import Notification.Subscriber;
-import Forum.DiscussionThread;
+import account.Account;
+import account.Developer;
+import notification.Subscriber;
+import forum.DiscussionThread;
 
 import java.util.ArrayList;
 import java.util.HashMap;

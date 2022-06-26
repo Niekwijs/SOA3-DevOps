@@ -1,8 +1,8 @@
-package Project;
+package project;
 
-import Account.Account;
-import Backlog.Backlog;
-import Sprint.Sprint;
+import account.Account;
+import backlog.Backlog;
+import sprint.Sprint;
 
 import java.util.ArrayList;
 

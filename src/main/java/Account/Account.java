@@ -1,4 +1,4 @@
-package Account;
+package account;
 
 public abstract class Account {
     public String name;

@@ -1,4 +1,4 @@
-package Sprint.States;
+package sprint.states;
 
 import exceptions.ChangeSprintStateException;
 

@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 public abstract class Visitor {
     public abstract void visitPipeline(PipeLine pipeLine);

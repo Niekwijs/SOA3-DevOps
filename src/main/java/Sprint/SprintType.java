@@ -1,6 +1,6 @@
-package Sprint;
+package sprint;
 
 public enum SprintType {
-    Release,
-    Review
+    release,
+    review
 }

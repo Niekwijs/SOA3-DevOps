@@ -1,4 +1,4 @@
-package Forum;
+package forum;
 
 import java.util.ArrayList;
 import java.util.Iterator;

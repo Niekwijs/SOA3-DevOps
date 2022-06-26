@@ -1,7 +1,7 @@
-package Backlog;
+package backlog;
 
-import Account.Account;
-import Account.LeadDeveloper;
+import account.Account;
+import account.LeadDeveloper;
 import exceptions.ChangeBacklogStateException;
 
 public class TestedState implements IBacklogItemState {

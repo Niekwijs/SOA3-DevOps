@@ -1,6 +1,6 @@
-package Sprint.States;
+package sprint.states;
 
-import Sprint.Sprint;
+import sprint.Sprint;
 import exceptions.ChangeSprintStateException;
 
 public class ReleaseErrorState implements ISprintState {

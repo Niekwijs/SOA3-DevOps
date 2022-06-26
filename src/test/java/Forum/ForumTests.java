@@ -1,11 +1,11 @@
-package Forum;
+package forum;
 
-import Account.Developer;
-import Backlog.*;
-import Notification.INotifier;
-import Notification.MailNotify;
-import Notification.NotificationService;
-import Notification.Subscriber;
+import account.Developer;
+import backlog.*;
+import notification.INotifier;
+import notification.MailNotify;
+import notification.NotificationService;
+import notification.Subscriber;
 import org.testng.annotations.Test;
 
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 public class Stage extends CompositeComponent {
     private String stageName;

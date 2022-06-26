@@ -1,6 +1,6 @@
-package Backlog;
+package backlog;
 
-import Account.Account;
+import account.Account;
 import exceptions.ChangeBacklogStateException;
 
 public class ToDoState implements IBacklogItemState {

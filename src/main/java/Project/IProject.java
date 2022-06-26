@@ -1,6 +1,6 @@
-package Project;
+package project;
 
-import Account.Account;
+import account.Account;
 
 public interface IProject {
     String getName();

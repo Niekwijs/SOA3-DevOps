@@ -1,7 +1,7 @@
-package Project;
+package project;
 
-import Account.Account;
-import Backlog.Backlog;
+import account.Account;
+import backlog.Backlog;
 
 public class KanbanProject implements IProject{
 

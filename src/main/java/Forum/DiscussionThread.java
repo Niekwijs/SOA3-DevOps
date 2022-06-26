@@ -1,7 +1,7 @@
-package Forum;
+package forum;
 
-import Notification.Publisher;
-import Notification.Subscriber;
+import notification.Publisher;
+import notification.Subscriber;
 
 import java.util.ArrayList;
 import java.util.Date;

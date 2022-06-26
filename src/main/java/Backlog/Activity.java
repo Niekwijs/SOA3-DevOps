@@ -1,4 +1,4 @@
-package Backlog;
+package backlog;
 
 public class Activity {
 

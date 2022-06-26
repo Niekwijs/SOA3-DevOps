@@ -1,16 +1,15 @@
-package Sprint;
+package sprint;
 
-import Account.Account;
-import Backlog.Backlog;
-import Backlog.BacklogItem;
-import Notification.Subscriber;
-import PipeLine.PipeLine;
-import PipeLine.PipeLineManager;
-import Project.IProject;
-import Project.ScrumProject;
-import Report.Report;
-import Sprint.States.ISprintState;
-import Sprint.States.InitialState;
+import account.Account;
+import backlog.Backlog;
+import backlog.BacklogItem;
+import notification.Subscriber;
+import pipeline.PipeLine;
+import pipeline.PipeLineManager;
+import project.IProject;
+import report.Report;
+import sprint.states.ISprintState;
+import sprint.states.InitialState;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -103,7 +102,7 @@ public class Sprint {
     }
 
     public void addPipeline(PipeLine pipeLine) {
-        if(this.getType() == SprintType.Release){
+        if(this.getType() == SprintType.release){
             this.pipeLineManager.addNewPipeline(pipeLine);
         }
     }

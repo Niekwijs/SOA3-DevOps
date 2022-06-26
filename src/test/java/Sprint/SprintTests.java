@@ -1,12 +1,11 @@
-package Sprint;
+package sprint;
 
-import Account.*;
-import Backlog.Backlog;
-import Notification.*;
-import PipeLine.PipeLine;
-import Project.ScrumProject;
-import Report.Report;
-import Sprint.States.*;
+import account.*;
+import backlog.Backlog;
+import notification.*;
+import pipeline.*;
+import project.ScrumProject;
+import report.Report;
 import exceptions.ChangeSprintStateException;
 import org.testng.annotations.Test;
 
@@ -17,13 +16,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import nl.altindag.console.ConsoleCaptor;
+import sprint.states.*;
 
 import static org.testng.AssertJUnit.*;
 
 public class SprintTests {
 
-    SprintType release = SprintType.Release;
-    SprintType review = SprintType.Review;
+    SprintType release = SprintType.release;
+    SprintType review = SprintType.review;
     Backlog backlog = new Backlog();
     Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
     Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
@@ -279,7 +279,7 @@ public class SprintTests {
     public void T23_2_release_sprint_starts_development_pipeline_manually() throws ChangeSprintStateException, InterruptedException {
         // Arrange
         Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
-        PipeLine pipeLine = new PipeLine("Pipeline", false);
+        PipeLine pipeLine = new PipeLine("pipeline", false);
         sprint.addPipeline(pipeLine);
 
         // Act
@@ -289,7 +289,7 @@ public class SprintTests {
 
         assert(consoleCaptor.getStandardOutput()).isEmpty();
 
-        sprint.pipeLineManager.executePipeLineByName("Pipeline");
+        sprint.pipeLineManager.executePipeLineByName("pipeline");
         sprint.getState().changeToReleaseSuccessState();
 
         // Assert
@@ -304,7 +304,7 @@ public class SprintTests {
     public void T23_3_review_sprint_cannot_start_development_pipeline() throws ChangeSprintStateException {
         // Arrange
         Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
-        PipeLine pipeLine = new PipeLine("Pipeline", false);
+        PipeLine pipeLine = new PipeLine("pipeline", false);
         sprint.addPipeline(pipeLine);
 
         // Act

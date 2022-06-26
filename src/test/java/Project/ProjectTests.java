@@ -1,9 +1,10 @@
-package Project;
+package project;
 
-import Account.*;
-import Backlog.Backlog;
-import Sprint.*;
+import account.*;
+import backlog.Backlog;
 import org.testng.annotations.Test;
+import sprint.Sprint;
+import sprint.SprintType;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -51,7 +52,7 @@ public class ProjectTests {
         ScrumProject project = (ScrumProject) projectFactory.getProject("scrum", "ThirdProject");
         project.setProductOwner(productOwner);
 
-        Sprint newSprint = new Sprint(SprintType.Release,"Sprint 1", sprintBacklog, scrumMaster,
+        Sprint newSprint = new Sprint(SprintType.release,"Sprint 1", sprintBacklog, scrumMaster,
                 productOwner, new ArrayList<>(), new ArrayList<>(), project, new Date(), new Date());
 
         //Act

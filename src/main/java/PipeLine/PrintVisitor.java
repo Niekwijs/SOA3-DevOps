@@ -1,4 +1,4 @@
-package PipeLine;
+package pipeline;
 
 public class PrintVisitor extends Visitor {
     public PrintVisitor() {

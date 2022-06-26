@@ -1,4 +1,4 @@
-package Backlog;
+package backlog;
 
 import java.util.ArrayList;
 import java.util.List;
