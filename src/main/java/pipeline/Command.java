@@ -1,6 +1,6 @@
 package pipeline;
 
-public class Command extends Component{
+public class Command implements Component{
     private String codeLine;
 
     public Command(String codeLine) {

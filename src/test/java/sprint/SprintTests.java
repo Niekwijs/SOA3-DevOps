@@ -22,8 +22,8 @@ import static org.testng.AssertJUnit.*;
 
 public class SprintTests {
 
-    SprintType release = SprintType.release;
-    SprintType review = SprintType.review;
+    SprintType release = SprintType.RELEASE;
+    SprintType review = SprintType.REVIEW;
     Backlog backlog = new Backlog();
     Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
     Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
@@ -36,7 +36,7 @@ public class SprintTests {
     @Test
     public void T14_15_1_sprint_can_be_created_with_review_type(){
         // Arrange
-        Sprint reviewSprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint reviewSprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         ISprintState state = reviewSprint.getState();
@@ -48,7 +48,7 @@ public class SprintTests {
     @Test
     public void T14_15_2_sprint_can_be_created_with_release_type(){
         // Arrange
-        Sprint reviewSprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint reviewSprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         ISprintState state = reviewSprint.getState();
@@ -60,7 +60,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_1_sprint_state_can_be_altered_correctly_to_reviewed() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Report report = new Report();
         sprint.addReport(report);
 
@@ -86,7 +86,7 @@ public class SprintTests {
     @Test
     public void T16_2_sprint_state_can_be_altered_correctly_to_releaseError_and_releaseCancelled() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         ISprintState initialState = sprint.getState();
@@ -118,7 +118,7 @@ public class SprintTests {
     @Test
     public void T16_3_sprint_state_can_be_altered_correctly_to_releaseSuccess() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         ISprintState initialState = sprint.getState();
@@ -146,7 +146,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_initial() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -162,7 +162,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_inProgress() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -178,7 +178,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_finished() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -194,7 +194,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_releasing() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -210,7 +210,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_cancelled() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -226,7 +226,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_error() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -242,7 +242,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_success() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -258,7 +258,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_4_sprint_state_can_not_be_altered_from_cancelled_to_reviewed() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -274,7 +274,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_initial() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -291,7 +291,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_inProgress() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -308,7 +308,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_finished() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -325,7 +325,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_releasing() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -342,7 +342,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_cancelled() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -359,7 +359,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_error() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -375,7 +375,7 @@ public class SprintTests {
 
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_success() throws ChangeSprintStateException, InterruptedException {
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -392,7 +392,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_5_sprint_state_can_not_be_altered_from_reviewed_to_reviewed() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -409,7 +409,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_initial() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -425,7 +425,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_inProgress() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -441,7 +441,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_finished() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -457,7 +457,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_releasing() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -473,7 +473,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_cancelled() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -489,7 +489,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_error() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -505,7 +505,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_success() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -521,7 +521,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_6_sprint_state_can_not_be_altered_from_success_to_reviewed() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -537,7 +537,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_initial() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -553,7 +553,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_inProgress() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -569,7 +569,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_finished() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -585,7 +585,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_releasing() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -601,7 +601,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_cancelled() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -617,7 +617,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T16_7_sprint_state_can_not_be_altered_from_releasing_to_reviewed() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -633,7 +633,7 @@ public class SprintTests {
     @Test
     public void T17_1_sprint_data_can_be_altered_in_initial_state(){
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Date newDate = new Date();
 
         // Act
@@ -659,7 +659,7 @@ public class SprintTests {
     @Test
     public void T17_2_sprint_data_can_not_be_altered_in_inProgress_state() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Date newDate = new Date();
 
         // Act
@@ -686,7 +686,7 @@ public class SprintTests {
     @Test
     public void T18_19_1_sprint_release_cancelled_sends_notification() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         OutputStream os = new ByteArrayOutputStream();
         PrintStream ps = new PrintStream(os);
         System.setOut(ps);
@@ -712,7 +712,7 @@ public class SprintTests {
     @Test
     public void T21_1_add_development_pipeline_to_sprint(){
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         PipeLine pipeLine = new PipeLine("DefaultDevPipeLine", false);
 
         // Act
@@ -725,7 +725,7 @@ public class SprintTests {
     @Test
     public void T21_2_add_new_development_pipeline_to_sprint(){
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         PipeLine pipeLine1 = new PipeLine("DefaultDevPipeLine0", false);
         PipeLine pipeLine2 = new PipeLine("DefaultDevPipeLine", false);
 
@@ -740,7 +740,7 @@ public class SprintTests {
     @Test
     public void T23_1_release_sprint_starts_development_pipeline() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -765,7 +765,7 @@ public class SprintTests {
     @Test
     public void T23_2_release_sprint_starts_development_pipeline_manually() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         PipeLine pipeLine = new PipeLine("pipeline", false);
         sprint.addPipeline(pipeLine);
 
@@ -790,7 +790,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T23_3_review_sprint_cannot_start_development_pipeline() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(review,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(review,"Sprint 1", scrumMaster, productOwner, project, date, date);
         PipeLine pipeLine = new PipeLine("pipeline", false);
         sprint.addPipeline(pipeLine);
 
@@ -807,7 +807,7 @@ public class SprintTests {
     @Test
     public void T24_25_1_release_sprint_success_sends_notifications() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         INotifier notifier = new SlackNotify();
         Subscriber sub = new NotificationService(notifier);
@@ -828,7 +828,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T26_1_sprint_is_closed_after_development_pipeline_passes() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -845,7 +845,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T26_2_sprint_is_closed_before_development_pipeline_passes() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -860,7 +860,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T26_3_sprint_is_closed_after_development_pipeline_fails() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -877,7 +877,7 @@ public class SprintTests {
     @Test
     public void T27_1_sprint_development_pipeline_fails_sends_notification() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         INotifier notifier = new MailNotify();
         Subscriber sub = new NotificationService(notifier);
@@ -898,7 +898,7 @@ public class SprintTests {
     @Test
     public void T28_1_development_pipeline_is_ran_again() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -915,7 +915,7 @@ public class SprintTests {
     @Test
     public void T29_1_sprint_release_is_cancelled() throws ChangeSprintStateException, InterruptedException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -932,7 +932,7 @@ public class SprintTests {
     @Test
     public void T30_1_sprint_review_is_uploaded_at_the_end_of_a_sprint() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Report report = new Report();
 
         // Act
@@ -948,7 +948,7 @@ public class SprintTests {
     @Test
     public void T30_2_sprint_review_is_uploaded_before_the_end_of_a_sprint() {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Report report = new Report();
 
         // Act
@@ -963,7 +963,7 @@ public class SprintTests {
     @Test
     public void T31_1_sprint_is_closed_after_uploading_review() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
         Report report = new Report();
 
         // Act
@@ -981,7 +981,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T31_2_sprint_is_closed_before_uploading_review() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -999,7 +999,7 @@ public class SprintTests {
     @Test
     public void T32_1_sprint_can_be_finished() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();
@@ -1014,7 +1014,7 @@ public class SprintTests {
     @Test(expectedExceptions = ChangeSprintStateException.class)
     public void T33_1_sprint_status_cannot_be_changed_during_pipeline() throws ChangeSprintStateException {
         // Arrange
-        Sprint sprint = new Sprint(release,"Sprint 1", backlog, scrumMaster, productOwner, devs, testers, project, date, date);
+        Sprint sprint = new Sprint(release,"Sprint 1", scrumMaster, productOwner, project, date, date);
 
         // Act
         sprint.getState().changeToInProgressState();

@@ -53,8 +53,8 @@ public class ProjectTests {
         ScrumProject project = (ScrumProject) projectFactory.getProject("scrum", "ThirdProject");
         project.setProductOwner(productOwner);
 
-        Sprint newSprint = new Sprint(SprintType.release,"Sprint 1", sprintBacklog, scrumMaster,
-                productOwner, new ArrayList<>(), new ArrayList<>(), project, new Date(), new Date());
+        Sprint newSprint = new Sprint(SprintType.RELEASE,"Sprint 1", scrumMaster,
+                productOwner, project, new Date(), new Date());
 
         //Act
         int initialLength = project.getSprints().size();

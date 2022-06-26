@@ -22,6 +22,9 @@ public class BacklogTests {
 
     Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
     Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
+    Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
+    LeadDeveloper leadDeveloper = new LeadDeveloper("testDev", 1,"test@mial.com","01111111","tester45" );
+    Developer developer2 = new Developer("test2", 2,"test2@mial.com","01111112","tester46");
 
     @Test
     public void T2_1_backlog_item_can_be_created_with_correct_data(){
@@ -107,7 +110,6 @@ public class BacklogTests {
     @Test
     public void T3_3_check_if_backlog_item_can_be_set_to_done_state() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -122,7 +124,6 @@ public class BacklogTests {
     @Test
     public void F3_4_Check_if_done_state_can_be_changed_to_todo_state () throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         Activity activity = new Activity("test activity");
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.addActivity(activity);
@@ -142,7 +143,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F3_5_check_if_backlog_item_cant_be_set_to_done_state_when_activities_arent_done () throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         Activity activity = new Activity("test activity");
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.addActivity(activity);
@@ -162,7 +162,6 @@ public class BacklogTests {
     @Test
     public void F3_6_check_if_backlog_item_can_be_changed_to_done_when_all_activities_are_done  () throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         Activity activity = new Activity("test activity");
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.addActivity(activity);
@@ -184,7 +183,6 @@ public class BacklogTests {
     public void F4_1_check_if_a_developer_can_be_added_to_a_backlog_item () throws Exception {
         //Arrange
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        Developer developer = new Developer("test", 1,"test@mial.com","01111111","tester45");
         //Act
         backlogItem.setAssignedTo(developer);
         //Assert
@@ -194,12 +192,11 @@ public class BacklogTests {
     public void F5_1_check_if_a_second_developer_can_be_assigned_to_an_backlog_item() throws Exception {
         //Arrange
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        Developer developer = new Developer("test", 1,"test@mial.com","01111111","tester45");
-        Developer developer2 = new Developer("test2", 2,"test2@mial.com","01111112","tester46");
 
         //Act
         backlogItem.setAssignedTo(developer);
         backlogItem.setAssignedTo(developer2);
+
         //Assert
         assertEquals(backlogItem.getAssignedTo(), developer2);
     }
@@ -294,7 +291,6 @@ public class BacklogTests {
     @Test
     public void F6_2_3_check_if_a_backlog_item_can_be_changed_from_doing_to_the_RFT() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         //Act
@@ -339,7 +335,6 @@ public class BacklogTests {
     @Test
     public void F6_3_1_check_if_a_backlog_item_can_be_changed_form_RFT_to_todo() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -352,7 +347,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_3_2_check_if_a_backlog_item_can_be_changed_form_RFT_to_doing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -365,7 +359,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_3_3_check_if_a_backlog_item_can_be_changed_form_RFT_to_RFT() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -378,7 +371,6 @@ public class BacklogTests {
     @Test
     public void F6_3_4_check_if_a_backlog_item_can_be_changed_form_RFT_to_Testing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -391,7 +383,6 @@ public class BacklogTests {
     @Test
     public void F6_3_5_check_if_a_backlog_item_can_be_changed_form_RFT_to_Tested() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -404,7 +395,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_3_6_check_if_a_backlog_item_can_be_changed_form_RFT_to_Done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -417,7 +407,6 @@ public class BacklogTests {
     @Test
     public void F6_4_1_check_if_a_backlog_item_can_be_changed_form_testing_to_todo() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -431,7 +420,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_4_2_check_if_a_backlog_item_can_be_changed_form_testing_to_doing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -445,7 +433,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_4_3_check_if_a_backlog_item_can_be_changed_form_testing_to_RFT() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -459,7 +446,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_4_4_check_if_a_backlog_item_can_be_changed_form_testing_to_testing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -473,7 +459,6 @@ public class BacklogTests {
     @Test
     public void F6_4_5_check_if_a_backlog_item_can_be_changed_form_testing_to_tested() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -487,7 +472,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_4_6_check_if_a_backlog_item_can_be_changed_form_testing_to_Done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -501,7 +485,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_5_1_check_if_a_backlog_item_can_be_changed_form_tested_to_todo() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -516,7 +499,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_5_2_check_if_a_backlog_item_can_be_changed_form_tested_to_doing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -531,7 +513,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_5_3_check_if_a_backlog_item_can_be_changed_form_tested_to_RFT() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -546,7 +527,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_5_4_check_if_a_backlog_item_can_be_changed_form_tested_to_testing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -561,7 +541,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_5_5_check_if_a_backlog_item_can_be_changed_form_tested_to_tested() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -576,7 +555,6 @@ public class BacklogTests {
     @Test
     public void F6_5_6_check_if_a_backlog_item_can_be_changed_form_tested_to_done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -591,7 +569,6 @@ public class BacklogTests {
     @Test
     public void F6_6_1_check_if_a_backlog_item_can_be_changed_form_done_to_todo() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -607,7 +584,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_6_2_check_if_a_backlog_item_can_be_changed_form_done_to_doing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -623,7 +599,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_6_3_check_if_a_backlog_item_can_be_changed_form_done_to_RFT() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -639,7 +614,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_6_4_check_if_a_backlog_item_can_be_changed_form_done_to_testing() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -655,7 +629,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_6_5_check_if_a_backlog_item_can_be_changed_form_done_to_tested() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -671,7 +644,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F6_6_6_check_if_a_backlog_item_can_be_changed_form_done_to_done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -687,7 +659,6 @@ public class BacklogTests {
     @Test
     public void F6_4_check_if_a_backlog_item_can_be_changed_to_the_tested_state() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -702,7 +673,6 @@ public class BacklogTests {
     @Test
     public void F6_5_check_if_a_backlog_item_can_be_changed_to_the_tested_state() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -729,7 +699,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F8_9_1_check_if_backlog_item_cant_be_changed_to_done_state_when_0_out_2_activities_are_done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         Activity activity1 = new Activity("testActivity1");
         Activity activity2 = new Activity("testActivity2");
@@ -751,7 +720,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F8_9_2_check_if_backlog_item_cant_be_changed_to_done_state_when_1_out_2_activities_are_done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         Activity activity1 = new Activity("testActivity1");
         Activity activity2 = new Activity("testActivity2");
@@ -774,7 +742,6 @@ public class BacklogTests {
     @Test
     public void F8_9_3_check_if_backlog_item_can_be_changed_to_done_state_when_2_out_2_activities_are_done() throws Exception {
         //Arrange
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         Activity activity1 = new Activity("testActivity1");
         Activity activity2 = new Activity("testActivity2");
@@ -797,7 +764,6 @@ public class BacklogTests {
     }
     @Test
     public void F10_11_1_check_if_all_states_are_being_changed() throws Exception {
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         assertEquals(backlogItem.getState().getClass(), ToDoState.class);
         backlogItem.getState().changeToDoingState();
@@ -815,7 +781,6 @@ public class BacklogTests {
     @Test(expectedExceptions = ChangeBacklogStateException.class)
     public void F12_1_check_if_a_non_lead_developer_cant_change_state_from_tested_to_ready_for_testing() throws Exception {
         //Assert
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
@@ -830,21 +795,19 @@ public class BacklogTests {
     @Test
     public void F12_1_check_if_a_lead_developer_can_change_state_from_tested_to_ready_for_testing() throws Exception {
         //Assert
-        LeadDeveloper developer = new LeadDeveloper("testDev", 1,"test@mial.com","01111111","tester45" );
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
         backlogItem.getState().changeToDoingState();
-        backlogItem.getState().changeToReadyForTestingState(developer);
+        backlogItem.getState().changeToReadyForTestingState(leadDeveloper);
         backlogItem.getState().changeToTestedState();
 
         //Act
-        backlogItem.getState().changeToReadyForTestingState(developer);
+        backlogItem.getState().changeToReadyForTestingState(leadDeveloper);
         //Assert
         assertEquals(backlogItem.getState().getClass(), ReadyForTestingState.class);
     }
     @Test
     public void F13_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
         //Assert
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
         Tester tester = new Tester("tester",1,"test@mial.com","01111111","tester45");
         NotificationService notificationService = new NotificationService(new SlackNotify());
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
@@ -865,11 +828,9 @@ public class BacklogTests {
     @Test
     public void F20_1_check_if_messages_isBeing_send_to_testers_when_backlog_item_is_set_to_ready_for_testing() throws Exception {
         //Assert
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
-        ScrumMaster scrumMaster1 = new ScrumMaster("scrummaster",1,"test@mial.com","01111111","tester45");
         NotificationService notificationService = new NotificationService(new SlackNotify());
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        backlogItem.subscribe(scrumMaster1,notificationService);
+        backlogItem.subscribe(scrumMaster,notificationService);
         backlogItem.getState().changeToDoingState();
         backlogItem.getState().changeToReadyForTestingState(developer);
 

@@ -2,7 +2,7 @@ package pipeline;
 
 import java.util.ArrayList;
 
-public class CompositeComponent extends  Component{
+public class CompositeComponent implements Component{
 
     private ArrayList<Component> parts;
 

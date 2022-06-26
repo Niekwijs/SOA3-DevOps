@@ -11,10 +11,7 @@ import report.Report;
 import sprint.states.ISprintState;
 import sprint.states.InitialState;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Sprint {
 
@@ -39,19 +36,19 @@ public class Sprint {
 
     private final Map<Account, Subscriber> subscribers = new HashMap<>();
 
-    public Sprint(SprintType type, String name, Backlog backlog, Account scrumMaster, Account productOwner, List<Account> developers, List<Account> testers, IProject project, Date startTime, Date endTime){
+    public Sprint(SprintType type, String name, Account scrumMaster, Account productOwner, IProject project, Date startTime, Date endTime){
         this.type = type;
         this.name = name;
-        this.backlog = backlog;
         this.scrumMaster = scrumMaster;
         this.productOwner = productOwner;
-        this.developers = developers;
-        this.testers = testers;
         this.project = project;
         this.startTime = startTime;
         this.endTime = endTime;
         this.state = new InitialState(this);
         this.pipeLineManager = new PipeLineManager();
+        this.backlog = new Backlog();
+        this.developers = new ArrayList<>();
+        this.testers = new ArrayList<>();
     }
 
     public SprintType getType() {
@@ -107,7 +104,7 @@ public class Sprint {
     }
 
     public void addPipeline(PipeLine pipeLine) {
-        if(this.getType() == SprintType.release){
+        if(this.getType() == SprintType.RELEASE){
             this.pipeLineManager.addNewPipeline(pipeLine);
         }
     }

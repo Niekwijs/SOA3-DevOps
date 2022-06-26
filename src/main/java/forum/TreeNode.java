@@ -37,7 +37,7 @@ public class TreeNode {
     }
 
     public void addTreeNode(TreeNode child){
-        child.setParent(this);
+        child.setParent(this.parent);
         if(!children.contains(child)){
             this.children.add(child);
         }
