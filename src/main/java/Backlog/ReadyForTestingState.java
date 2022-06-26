@@ -20,12 +20,12 @@ public class ReadyForTestingState implements IBacklogItemState {
 
     @Override
     public void changeToDoingState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from ReadyForTesting to Doing!");
+        throw new ChangeBacklogStateException("Can't change from ReadyForTesting to Doing!");
     }
 
     @Override
     public void changeToReadyForTestingState(Account account) throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from ReadyForTesting to ReadyForTesting!");
+        throw new ChangeBacklogStateException("Can't change from ReadyForTesting to ReadyForTesting!");
     }
 
     @Override
@@ -40,6 +40,6 @@ public class ReadyForTestingState implements IBacklogItemState {
 
     @Override
     public void changeToDoneState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from ReadyForTesting to Done!");
+        throw new ChangeBacklogStateException("Can't change from ReadyForTesting to Done!");
     }
 }

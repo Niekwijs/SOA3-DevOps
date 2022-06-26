@@ -19,26 +19,26 @@ public class DoneState implements IBacklogItemState {
 
     @Override
     public void changeToDoingState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Done to Doing!");
+        throw new ChangeBacklogStateException("Can't change from Done to Doing!");
     }
 
     @Override
     public void changeToReadyForTestingState(Account account) throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Done to ReadyForTesting!");
+        throw new ChangeBacklogStateException("Can't change from Done to ReadyForTesting!");
     }
 
     @Override
     public void changeToTestingState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Done to Testing!");
+        throw new ChangeBacklogStateException("Can't change from Done to Testing!");
     }
 
     @Override
     public void changeToTestedState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Done to Tested!");
+        throw new ChangeBacklogStateException("Can't change from Done to Tested!");
     }
 
     @Override
     public void changeToDoneState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Done to Done!");
+        throw new ChangeBacklogStateException("Can't change from Done to Done!");
     }
 }

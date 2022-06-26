@@ -14,12 +14,12 @@ public class TestedState implements IBacklogItemState {
 
     @Override
     public void changeToToDoState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Tested to ToDo!");
+        throw new ChangeBacklogStateException("Can't change from Tested to ToDo!");
     }
 
     @Override
     public void changeToDoingState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Tested to Doing!");
+        throw new ChangeBacklogStateException("Can't change from Tested to Doing!");
     }
 
     @Override
@@ -27,20 +27,19 @@ public class TestedState implements IBacklogItemState {
         if(PriviligeCheck.CheckPrivilage(account, LeadDeveloper.class)){
             this._backlogItem.setState(new ReadyForTestingState(this._backlogItem));
         }else{
-            ErrorHandler.throwChangeStateError("Can't change from ReadyForTesting to Doing!");
-            throw new ChangeBacklogStateException(account.getClass().toString()+" does not have permission to change back to ready for testing");
+            throw new ChangeBacklogStateException("Can't change from ReadyForTesting to Doing!");
         }
 
     }
 
     @Override
     public void changeToTestingState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Tested to Testing!");
+        throw new ChangeBacklogStateException("Can't change from Tested to Testing!");
     }
 
     @Override
     public void changeToTestedState() throws ChangeBacklogStateException {
-        ErrorHandler.throwChangeStateError("Can't change from Tested to Tested!");
+        throw new ChangeBacklogStateException("Can't change from Tested to Tested!");
     }
 
     @Override
@@ -50,7 +49,7 @@ public class TestedState implements IBacklogItemState {
             this._backlogItem.setState(new DoneState(this._backlogItem));
         } else
         {
-            ErrorHandler.throwChangeStateError("Can't change from Tested to Done because activities are not done!");
+            throw new ChangeBacklogStateException("Can't change from Tested to Done because activities are not done!");
         }
     }
 }
