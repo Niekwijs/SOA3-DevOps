@@ -3,6 +3,8 @@ import backlog.BacklogItem;
 import pipeline.Command;
 import pipeline.PipeLine;
 import pipeline.Stage;
+import project.IProject;
+import project.ProjectFactory;
 
 public class demo {
 
@@ -99,7 +101,13 @@ public class demo {
     }
 
     public static void demoFactory() {
+        ProjectFactory projectFactory = new ProjectFactory();
 
+        IProject scrumProject = projectFactory.getProject("scrum", "1st Scrum project");
+        IProject kanbanProject = projectFactory.getProject("kanban", "1st Kanban project");
+
+        System.out.println("Scrum: " + scrumProject.getName() + ", type: " + scrumProject.getClass().getSimpleName());
+        System.out.println("Kanban: " + kanbanProject.getName() + ", type: " + kanbanProject.getClass().getSimpleName());
     }
 
 }
