@@ -1,16 +1,48 @@
 import account.Developer;
 import backlog.BacklogItem;
+import pipeline.Command;
+import pipeline.PipeLine;
+import pipeline.Stage;
 
 public class demo {
 
     public static void main(String[] args) {
 //        composite state pattern
-        demoState();
+//        demoState();
+        demoComposite();
+
 
     }
 
-    public void demoComposite(){
+    public static void demoComposite(){
 
+        System.out.println("[+] lets create a pipeline which extends CompositeComponent");
+        PipeLine pipeLine = new PipeLine("pipeline test", false);
+        System.out.println("[+] pipeline created with the name "+ pipeLine.getPipeLineName());
+        System.out.println("[+] this CompositeComponent holds a list with Components aka parts of the whole");
+
+        System.out.println("[+] Lets create a new stage which also extends CompositeComponent");
+        Stage stage1 = new Stage("source");
+        System.out.println("[+] created a new Stage with name" + stage1.getStageName());
+        System.out.println("[+] lets also create a command which extends component");
+        System.out.println("[+] a component can be seen as a leaf from a tree and cant contain any children");
+        Command command1 = new Command("source");
+        System.out.println("[+] created a new command with the codeline "+ command1.getCodeLine());
+        System.out.println("[+] this is fun an all but what is the point?");
+        System.out.println("[+] it lets us combine the parts of the pipeline, sort of like a three.");
+        System.out.println("[+] lets add the stage to our pipeline");
+        pipeLine.addComponent(stage1);
+        System.out.println("[+] we succesfully added stage" + pipeLine.getComponent(0).toString());
+        System.out.println("[+] now lets add a command to our pipeline so something gets executed");
+        stage1.addComponent(command1);
+        System.out.println("[+] this command has been added to our stage"+ stage1.getComponent(0).toString());
+        System.out.println("[+] lets create another command ");
+        Command command2 = new Command("load package.json");
+        System.out.println("[+] created a new commanf with codeline "+ command2.getCodeLine());
+        System.out.println("[+] the composite pattern lets us add this command in the same array where stage has been added");
+        pipeLine.addComponent(command2);
+        System.out.println("[+] lets check if our command has been added next to the stage we added earlier ");
+        System.out.println("[" + pipeLine.getComponent(0) + "," + pipeLine.getComponent(1) + "]");
     }
     public static void demoState(){
         BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
