@@ -7,10 +7,12 @@ import pipeline.Stage;
 public class demo {
 
     public static void main(String[] args) {
-
-//        demoComposite();
 //        demoState();
-
+//        demoObserver();
+//        demoComposite();
+//        demoStrategy();
+//        demoAdapter();
+//        demoFactory();
     }
 
     public static void demoState() {
@@ -45,6 +47,10 @@ public class demo {
 
         System.out.println("[+] The state of the backlogitem should be ready for testing state");
         System.out.println(backlogItem.getState().toString());
+    }
+
+    public static void demoObserver() {
+
     }
 
     public static void demoComposite() {
@@ -83,8 +89,17 @@ public class demo {
         System.out.println("[+] lets check if our command has been added next to the stage we added earlier ");
         System.out.println("[" + pipeLine.getComponent(0) + "," + pipeLine.getComponent(1) + "]");
     }
-    
 
+    public static void demoStrategy() {
 
+    }
+
+    public static void demoAdapter() {
+
+    }
+
+    public static void demoFactory() {
+
+    }
 
 }
