@@ -11,8 +11,12 @@ import pipeline.PrintVisitor;
 import pipeline.Stage;
 import project.IProject;
 import project.ProjectFactory;
+import report.ExportType;
+import report.ReportBuilder;
 import sprint.Sprint;
 import sprint.SprintType;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 public class demo {
@@ -20,8 +24,8 @@ public class demo {
     public static void main(String[] args) throws ChangeSprintStateException {
 //        demoState();
 //        demoObserver();
-        demoComposite();
-//        demoStrategy();
+//        demoComposite();
+        demoStrategy();
 //        demoAdapter();
 //        demoFactory();
     }
@@ -97,7 +101,17 @@ public class demo {
     }
 
     public static void demoStrategy() {
+        ReportBuilder reportBuilder = new ReportBuilder();
 
+        reportBuilder.setExportType(ExportType.PDF);
+
+        ArrayList<String> contents = new ArrayList<>();
+        contents.add("This is a demo of the strategy pattern!");
+
+        reportBuilder.addHeader("Company", "Sprint 1", 1, new Date());
+        reportBuilder.addContent(contents);
+        reportBuilder.addFooter("Address", "Company", "0612345678");
+        reportBuilder.getReport();
     }
 
     public static void demoAdapter() {
