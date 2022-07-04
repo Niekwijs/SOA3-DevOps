@@ -1,6 +1,6 @@
 public class main {
 
-    public static void main(String args[]){
+    public static void main(String[] args){
 
         // State pattern
 
@@ -8,7 +8,7 @@ public class main {
         // Observer
 
 
-        // Composite / visitor -> Niek
+        // Composite / visitor
 
 
         // Strategy
