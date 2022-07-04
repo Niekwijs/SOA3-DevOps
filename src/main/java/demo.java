@@ -1,14 +1,22 @@
+import account.Account;
 import account.Developer;
+import account.ProductOwner;
+import account.ScrumMaster;
 import backlog.BacklogItem;
+import exceptions.ChangeSprintStateException;
+import notification.*;
 import pipeline.Command;
 import pipeline.PipeLine;
 import pipeline.Stage;
 import project.IProject;
 import project.ProjectFactory;
+import sprint.Sprint;
+import sprint.SprintType;
+import java.util.Date;
 
 public class demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ChangeSprintStateException {
 //        demoState();
 //        demoObserver();
 //        demoComposite();
@@ -51,8 +59,22 @@ public class demo {
         System.out.println(backlogItem.getState().toString());
     }
 
-    public static void demoObserver() {
+    public static void demoObserver() throws ChangeSprintStateException {
+        ProjectFactory projectFactory = new ProjectFactory();
+        IProject project = projectFactory.getProject("scrum", "1st Scrum project");
 
+        Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
+        Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
+
+        Sprint sprint = new Sprint(SprintType.RELEASE,"Sprint 1", scrumMaster, productOwner, project, new Date(), new Date());
+
+        INotifier notifier = new SlackNotify();
+        Subscriber sub = new NotificationService(notifier);
+        sprint.subscribe(scrumMaster, sub);
+
+        sprint.getState().changeToInProgressState();
+        sprint.getState().changeToFinishedState();
+        sprint.getState().changeToReleaseCancelledState();
     }
 
     public static void demoComposite() {
