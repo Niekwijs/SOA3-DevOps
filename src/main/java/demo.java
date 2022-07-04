@@ -3,6 +3,8 @@ import account.Developer;
 import account.ProductOwner;
 import account.ScrumMaster;
 import backlog.BacklogItem;
+import backlog.IBacklogItemState;
+import backlog.ToDoState;
 import exceptions.ChangeSprintStateException;
 import notification.*;
 import pipeline.Command;
@@ -26,13 +28,15 @@ public class demo {
 //        demoObserver();
 //        demoComposite();
 //        demoStrategy();
-        demoAdapter();
+//        demoAdapter();
 //        demoFactory();
     }
 
     public static void demoState() {
         BacklogItem backlogItem = new BacklogItem("test item", 1, 2, 3);
         Developer developer = new Developer("testDev", 1, "test@mial.com", "01111111", "tester45");
+
+        System.out.println("Initial state: " + backlogItem.getState().getClass().getSimpleName());
 
         try {
             backlogItem.getState().changeToReadyForTestingState(developer);
