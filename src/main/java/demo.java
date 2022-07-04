@@ -27,37 +27,30 @@ public class demo {
     }
 
     public static void demoState() {
-        BacklogItem backlogItem = new BacklogItem("test item",1,2,3);
-        Developer developer = new Developer("testDev", 1,"test@mial.com","01111111","tester45" );
+        BacklogItem backlogItem = new BacklogItem("test item", 1, 2, 3);
+        Developer developer = new Developer("testDev", 1, "test@mial.com", "01111111", "tester45");
 
-        System.out.println("[+] created  new backlog item"+ backlogItem.getDescription());
-        System.out.println("[+] status backlog item"+ backlogItem.getState().toString());
-
-        System.out.println("[+] trying to change status to ready for testing (should not work!)");
         try {
             backlogItem.getState().changeToReadyForTestingState(developer);
         } catch (Exception e) {
-            System.out.println("[+] this was not allowed in the current state");
+            System.out.println("This is not allowed in the current state!");
         }
 
         try {
             backlogItem.getState().changeToDoingState();
         } catch (Exception e) {
-            System.out.println("[+] this should not get called!");
+            System.out.println("This should not get called!");
         }
-        System.out.println("[+] changed to doing state");
-        System.out.println(backlogItem.getState().toString());
 
-        System.out.println("[+] lets try to change the state again!");
+        System.out.println("Current state: " + backlogItem.getState().getClass().getSimpleName());
+
         try {
             backlogItem.getState().changeToReadyForTestingState(developer);
-
         } catch (Exception e) {
-            System.out.println("[+] This exception should not be thrown");
+            System.out.println("This should not get called!");
         }
 
-        System.out.println("[+] The state of the backlogitem should be ready for testing state");
-        System.out.println(backlogItem.getState().toString());
+        System.out.println("Final state: " + backlogItem.getState().getClass().getSimpleName());
     }
 
     public static void demoObserver() throws ChangeSprintStateException {
@@ -67,7 +60,7 @@ public class demo {
         Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
         Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
 
-        Sprint sprint = new Sprint(SprintType.RELEASE,"Sprint 1", scrumMaster, productOwner, project, new Date(), new Date());
+        Sprint sprint = new Sprint(SprintType.RELEASE, "Sprint 1", scrumMaster, productOwner, project, new Date(), new Date());
 
         INotifier notifier = new SlackNotify();
         Subscriber sub = new NotificationService(notifier);
@@ -79,47 +72,28 @@ public class demo {
     }
 
     public static void demoComposite() {
-        System.out.println("[+] lets create a pipeline which extends CompositeComponent");
+        // Pipeline extends CompositeComponent
         PipeLine pipeLine = new PipeLine("pipeline test", false);
-        System.out.println("[+] pipeline created with the name "+ pipeLine.getPipeLineName());
-        System.out.println("[+] this CompositeComponent holds a list with Components aka parts of the whole");
 
-        System.out.println("[+] Lets create a new stage which also extends CompositeComponent");
-        Stage stage1 = new Stage("source");
-        System.out.println("[+] created a new Stage with name" + stage1.getStageName());
+        // Stage also extends CompositeComponent
+        Stage stage1 = new Stage("Stage 1");
+        // Command extends component
+        Command command1 = new Command("build");
 
-        System.out.println("[+] lets also create a command which extends component");
-        System.out.println("[+] a component can be seen as a leaf from a tree and cant contain any children");
-        Command command1 = new Command("source");
-        System.out.println("[+] created a new command with the codeline "+ command1.getCodeLine());
+        Stage stage2 = new Stage("Stage 2");
+        Command command2 = new Command("test");
 
-        System.out.println("[+] this is fun and all but what is the point?");
-        System.out.println("[+] it lets us combine the parts of the pipeline, sort of like a tree.");
-
-        System.out.println("[+] lets add the stage to our pipeline");
+        // Add the stage to the pipeline
         pipeLine.addComponent(stage1);
-        System.out.println("[+] we successfully added stage" + pipeLine.getComponent(0).toString());
+        pipeLine.addComponent(stage2);
 
-        System.out.println("[+] now lets add a command to our pipeline so something gets executed");
+        // Add the commands to the stage, previously added to the pipeline
         stage1.addComponent(command1);
-        System.out.println("[+] this command has been added to our stage "+ stage1.getComponent(0).toString());
+        stage2.addComponent(command2);
 
-        System.out.println("[+] lets create another command ");
-        Command command2 = new Command("load package.json");
-        System.out.println("[+] created a new command with codeline "+ command2.getCodeLine());
-
-        System.out.println("[+] the composite pattern lets us add this command in the same array where stage has been added");
-        pipeLine.addComponent(command2);
-
-        System.out.println("[+] lets check if our command has been added next to the stage we added earlier ");
-        System.out.println("[" + pipeLine.getComponent(0) + "," + pipeLine.getComponent(1) + "]");
-
-        System.out.println("[+] now lets create a vistor to print all the names of the parts in our pipeline");
+        // A visitor can print all the parts in the pipeline
         PrintVisitor printVisitor = new PrintVisitor();
-
-        System.out.println("[+] now lets pass the visitor to all components whom extend compositeComponent and component");
         pipeLine.acceptVisitor(printVisitor);
-        System.out.println("[+] this visitor pattern can be used to add methods to objects and define object specific logic ");
     }
 
     public static void demoStrategy() {
