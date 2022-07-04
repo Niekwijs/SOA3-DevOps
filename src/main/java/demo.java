@@ -7,6 +7,7 @@ import exceptions.ChangeSprintStateException;
 import notification.*;
 import pipeline.Command;
 import pipeline.PipeLine;
+import pipeline.PrintVisitor;
 import pipeline.Stage;
 import project.IProject;
 import project.ProjectFactory;
@@ -19,7 +20,7 @@ public class demo {
     public static void main(String[] args) throws ChangeSprintStateException {
 //        demoState();
 //        demoObserver();
-//        demoComposite();
+        demoComposite();
 //        demoStrategy();
 //        demoAdapter();
 //        demoFactory();
@@ -112,6 +113,13 @@ public class demo {
 
         System.out.println("[+] lets check if our command has been added next to the stage we added earlier ");
         System.out.println("[" + pipeLine.getComponent(0) + "," + pipeLine.getComponent(1) + "]");
+
+        System.out.println("[+] now lets create a vistor to print all the names of the parts in our pipeline");
+        PrintVisitor printVisitor = new PrintVisitor();
+
+        System.out.println("[+] now lets pass the visitor to all components whom extend compositeComponent and component");
+        pipeLine.acceptVisitor(printVisitor);
+        System.out.println("[+] this visitor pattern can be used to add methods to objects and define object specific logic ");
     }
 
     public static void demoStrategy() {
