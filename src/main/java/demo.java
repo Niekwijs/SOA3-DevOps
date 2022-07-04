@@ -25,8 +25,8 @@ public class demo {
 //        demoState();
 //        demoObserver();
 //        demoComposite();
-        demoStrategy();
-//        demoAdapter();
+//        demoStrategy();
+        demoAdapter();
 //        demoFactory();
     }
 
@@ -114,8 +114,22 @@ public class demo {
         reportBuilder.getReport();
     }
 
-    public static void demoAdapter() {
+    public static void demoAdapter() throws ChangeSprintStateException {
+        ProjectFactory projectFactory = new ProjectFactory();
+        IProject project = projectFactory.getProject("scrum", "1st Scrum project");
 
+        Account scrumMaster = new ScrumMaster("testScrumMaster", 1, "test@email.com", "0612345678", "testUser");
+        Account productOwner = new ProductOwner("testProductOwner", 2, "test@email.com", "0612345678", "testUser");
+
+        Sprint sprint = new Sprint(SprintType.RELEASE, "Sprint 1", scrumMaster, productOwner, project, new Date(), new Date());
+
+        INotifier notifier = new MailNotify();
+        Subscriber sub = new NotificationService(notifier);
+        sprint.subscribe(scrumMaster, sub);
+
+        sprint.getState().changeToInProgressState();
+        sprint.getState().changeToFinishedState();
+        sprint.getState().changeToReleaseCancelledState();
     }
 
     public static void demoFactory() {
